@@ -1,0 +1,11 @@
+[
+    {
+        "name": "library-api${deployment.suffix}-v1",
+        "host": "apigee-dev-training.appspot.com",
+        "isEnabled": true,
+        "port": 443,
+        "sSLInfo": {
+            "enabled": "true"
+        }
+    }
+]

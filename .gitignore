@@ -1,0 +1,7 @@
+node_modules/
+target/
+.settings
+.project
+.vscode
+report.json
+devAppKeys.json

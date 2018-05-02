@@ -1,0 +1,129 @@
+{
+    "books": {
+        "book": [{
+            "id": "121b4bb3-c971-4080-b230-571148b71969",
+            "price": "$18.2",
+            "publisher": "Penguin",
+            "title": "Northanger Abbey",
+            "year": "1814",
+            "author": {
+                "dateOfBirth": "1775-12-16",
+                "dateOfDeath": "1817-07-18",
+                "id": "3960590c-bdd1-4e6b-9e7b-383f3314a4aa",
+                "name": "Jane Austen",
+                "placeOfBirth": "Steventon, United Kingdom",
+                "placeOfDeath": "Winchester, United Kingdom"
+            }
+        }, {
+            "id": "ea4b210e-04ef-43c8-a2e0-f7f70b4f787e",
+            "price": "$12.7",
+            "publisher": "Penguin",
+            "title": "War and Peace",
+            "year": "1865",
+            "author": {
+                "dateOfBirth": "1828-09-09",
+                "dateOfDeath": "1910-11-20",
+                "id": "1f5c7451-4674-4cf4-9540-7656660dc8a0",
+                "name": "Leo Tolstoy",
+                "placeOfBirth": "Yasnaya Polyana, Russia",
+                "placeOfDeath": "Lev Tolstoy, Russia"
+            }
+        }, {
+            "id": "d9856d93-9d77-4506-aa93-1019df552d40",
+            "price": "$13.5",
+            "publisher": "Penguin",
+            "title": "Anna Karenina",
+            "year": "1875",
+            "author": {
+                "dateOfBirth": "1828-09-09",
+                "dateOfDeath": "1910-11-20",
+                "id": "1f5c7451-4674-4cf4-9540-7656660dc8a0",
+                "name": "Leo Tolstoy",
+                "placeOfBirth": "Yasnaya Polyana, Russia",
+                "placeOfDeath": "Lev Tolstoy, Russia"
+            }
+        }, {
+            "id": "401be4f4-9025-48fb-a409-ac8b099d87ce",
+            "price": "$25",
+            "publisher": "Harcourt Brace",
+            "title": "Mrs. Dalloway",
+            "year": "1925",
+            "author": {
+                "dateOfBirth": "1882-01-25",
+                "dateOfDeath": "1941-03-28",
+                "id": "a094ff6e-0637-4bf4-aa83-966135036ed5",
+                "name": "Virginia Wolf",
+                "placeOfBirth": "London, United Kingdom",
+                "placeOfDeath": "Lewes, United Kingdom"
+            }
+        }, {
+            "id": "743dcb5d-feba-4505-b367-ee1ceeca5eb7",
+            "price": "$29",
+            "publisher": "Penguin",
+            "title": "A Room of One's Own",
+            "year": "1922",
+            "author": {
+                "dateOfBirth": "1882-01-25",
+                "dateOfDeath": "1941-03-28",
+                "id": "a094ff6e-0637-4bf4-aa83-966135036ed5",
+                "name": "Virginia Wolf",
+                "placeOfBirth": "London, United Kingdom",
+                "placeOfDeath": "Lewes, United Kingdom"
+            }
+        }, {
+            "id": "1ee24d22-4066-4faa-a8e7-302e22979be2",
+            "price": "$12.35",
+            "publisher": "Penguin",
+            "title": "Huckleberry Finn",
+            "year": "1865",
+            "author": {
+                "dateOfBirth": "1835-11-30",
+                "dateOfDeath": "1910-04-21",
+                "id": "d662f4cf-9da4-4c3e-81be-ebdc4d2d4481",
+                "name": "Mark Twain",
+                "placeOfBirth": "Florida, Missouri, United States",
+                "placeOfDeath": "Redding, Connecticut, United States"
+            }
+        }, {
+            "id": "9ac0ff61-7d04-4281-95e6-02221075dd67",
+            "price": "$7.75",
+            "publisher": "Random House",
+            "title": "Tom Swayer",
+            "year": "1862",
+            "author": {
+                "dateOfBirth": "1835-11-30",
+                "dateOfDeath": "1910-04-21",
+                "id": "d662f4cf-9da4-4c3e-81be-ebdc4d2d4481",
+                "name": "Mark Twain",
+                "placeOfBirth": "Florida, Missouri, United States",
+                "placeOfDeath": "Redding, Connecticut, United States"
+            }
+        }, {
+            "id": "f26217c6-0d1f-4223-b710-be53d75db249",
+            "price": "$19.95",
+            "publisher": "Harcourt Brace",
+            "title": "Harry Potter and the Sorcerer's Stone",
+            "year": "2000",
+            "author": {
+                "dateOfBirth": "1927-03-06",
+                "dateOfDeath": "2014-04-17",
+                "id": "ecf2981d-5529-487e-ae1c-44dc9afb0cfb",
+                "name": "Gabriel García Márquez",
+                "placeOfBirth": "Arataca, Colombia",
+                "placeOfDeath": "Mexico City, Mexico"
+            }
+        }, {
+            "id": "3986a7e7-e099-433f-95c8-bf3563bfce13",
+            "price": "$14.00",
+            "publisher": "Harper Perennial",
+            "title": "One Hundred Years of Solitude",
+            "year": "1967",
+            "author": {
+                "dateOfBirth": "1965-07-31",
+                "id": "c21c02fa-c629-4cfa-95a3-43af8cbf9e64",
+                "name": "J.K. Rowling",
+                "placeOfBirth": "Yate, United Kingdom"
+            }
+        }]
+    }
+}

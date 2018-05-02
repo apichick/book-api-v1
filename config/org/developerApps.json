@@ -1,0 +1,9 @@
+{
+    "john.doe@acme.com": [{
+        "apiProducts": [
+            "book-api${entity.suffix}-v1-api-product"
+        ],
+        "name": "book-api${entity.suffix}-v1-app",
+        "scopes": []
+    }]
+}

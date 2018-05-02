@@ -1,0 +1,17 @@
+{
+    "book": {
+        "id": "121b4bb3-c971-4080-b230-571148b71969",
+        "price": "$18.2",
+        "publisher": "Penguin",
+        "title": "Northanger Abbey",
+        "year": "1814",
+        "author": {
+            "dateOfBirth": "1775-12-16",
+            "dateOfDeath": "1817-07-18",
+            "id": "3960590c-bdd1-4e6b-9e7b-383f3314a4aa",
+            "name": "Jane Austen",
+            "placeOfBirth": "Steventon, United Kingdom",
+            "placeOfDeath": "Winchester, United Kingdom"
+        }
+    }
+}

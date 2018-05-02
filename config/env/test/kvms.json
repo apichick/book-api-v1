@@ -1,0 +1,11 @@
+[
+    {
+        "name": "book-api${deployment.suffix}-v1-configuration",
+        "entry": [
+            {
+                "name": "cacheEntryExpiry",
+                "value": "600"
+            }
+        ]
+    }
+]

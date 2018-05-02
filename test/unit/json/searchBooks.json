@@ -1,0 +1,19 @@
+{
+    "books": {
+        "book": {
+            "id": "ea4b210e-04ef-43c8-a2e0-f7f70b4f787e",
+            "price": "$12.7",
+            "publisher": "Penguin",
+            "title": "War and Peace",
+            "year": "1865",
+            "author": {
+                "dateOfBirth": "1828-09-09",
+                "dateOfDeath": "1910-11-20",
+                "id": "1f5c7451-4674-4cf4-9540-7656660dc8a0",
+                "name": "Leo Tolstoy",
+                "placeOfBirth": "Yasnaya Polyana, Russia",
+                "placeOfDeath": "Lev Tolstoy, Russia"
+            }
+        }
+    }
+}

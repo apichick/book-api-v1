@@ -1,0 +1,17 @@
+[
+    {
+        "name": "book-api${entity.suffix}-v1-api-product",
+        "displayName": "book-api${entity.suffix}-v1-api-product",
+        "approvalType": "auto",
+        "environments": [
+            "${apigee.env}"
+        ],
+        "proxies": [
+            "book-api${deployment.suffix}-v1"
+        ],
+        "quota": "10000",
+        "quotaInterval": "1",
+        "quotaTimeUnit": "month",
+        "scopes": []
+    }
+]
