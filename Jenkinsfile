@@ -51,6 +51,7 @@ pipeline {
     }
     post {
         always {
+            junit 'test/unit/test-report.xml'
             cucumber 'test/integration/report.json'
         }
     }
