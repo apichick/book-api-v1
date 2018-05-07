@@ -34,8 +34,6 @@
 		<apigee.password>${password}</apigee.password>
 		<apigee.org>${org}</apigee.org>
 		<apigee.env>${env}</apigee.env>
-		<test.scheme>https</test.scheme>
-		<test.hostname>${apigee.org}-${apigee.env}.apigee.net</test.hostname>
 		<apigee.config.dir>${target.root.dir}/config</apigee.config.dir>
 		<apigee.options>update</apigee.options>
 		<apigee.config.options>update</apigee.config.options>
@@ -43,9 +41,24 @@
 		<description>${name}${description.suffix}</description>
 		<deployment.suffix>-${user.name}</deployment.suffix>
 		<entity.suffix>${deployment.suffix}</entity.suffix>
-		<commit></commit>
-		<branch></branch>
+		<skipNode>true</skipNode>
+		<test.scheme>https</test.scheme>
+		<test.domain>${apigee.org}-${apigee.env}.apigee.net/book${deployment.suffix}/v1</test.domain>
 	</properties>
+	<profiles>
+		<profile>
+			<id>skip-node</id>
+			<properties>
+				<name>skipNode</name>
+				<value>false</value>
+			</properties>
+			<activation>
+				<file>
+					<exists>apiproxy/resources/node</exists>
+				</file>
+			</activation>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
@@ -61,7 +74,7 @@
 						</goals>
 						<configuration>
 							<directories>
-								<directory>${project.root.dir}/apiproxy/resources/jsc</directory>
+								<directory>apiproxy/resources/jsc</directory>
 							</directories>
 							<reporter>jslint</reporter>
 						</configuration>
@@ -183,19 +196,42 @@
 							<scripts>
             					<script>
 								<![CDATA[
-									import groovy.json.JsonSlurper
 									def orgConfigDir = new File(project.properties.getProperty('apigee.config.dir'), 'org')
 									def exportDir = new File(project.properties.getProperty('apigee.config.exportDir'))
 									def developersFile = new File(orgConfigDir, 'developers.json')
 									def appsFile = new File(orgConfigDir, 'developerApps.json')
 									def keysFile = new File(exportDir, 'devAppKeys.json')
-									def developers = new JsonSlurper().parseText(developersFile.text)
-									def apps = new JsonSlurper().parseText(appsFile.text)
-									def keys = new JsonSlurper().parseText(keysFile.text)
+									def jsonSlurper = new groovy.json.JsonSlurper() 
+									def developers = jsonSlurper.parseText(developersFile.text)
+									def apps = jsonSlurper.parseText(appsFile.text)
+									def keys = jsonSlurper.parseText(keysFile.text)
 									def developerEmail = developers[0].email
 									def appName = apps[developerEmail][0].name
 									def appDetails = keys.find { it.name == appName }
-									project.properties.setProperty('test.apikey', appDetails.credentials[0].consumerKey)
+									project.properties.setProperty('test.consumerKey', appDetails.credentials[0].consumerKey)
+									project.properties.setProperty('test.consumerSecret', appDetails.credentials[0].consumerSecret)
+								]]>
+            					</script>
+          					</scripts>
+						</configuration>
+					</execution>
+					<execution>
+						<id>set-test-world-parameters</id>
+						<phase>install</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<scripts>
+            					<script>
+								<![CDATA[
+									def worldParameters = [:]
+									project.properties.each { 
+										if(it.key.startsWith('test.')) {
+											worldParameters[it.key.replace('test.', '')] = it.value
+										}
+									}
+									project.properties.setProperty('worldParameters', new groovy.json.JsonBuilder(worldParameters).toString());
 								]]>
             					</script>
           					</scripts>
@@ -235,8 +271,21 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.3.2</version>
+				<version>1.6.0</version>
 				<executions>
+					<execution>
+						<id>install-node-app-node-packages</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<executable>npm</executable>
+							<workingDirectory>apiproxy/resources/node</workingDirectory>
+							<commandlineArgs>install</commandlineArgs>
+							<skip>${skipNode}</skip>
+						</configuration>
+					</execution>
 					<execution>
 						<id>install-unit-tests-node-packages</id>
 						<goals>
@@ -245,7 +294,7 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<executable>npm</executable>
-							<workingDirectory>${project.root.dir}/test/unit</workingDirectory>
+							<workingDirectory>test/unit</workingDirectory>
 							<commandlineArgs>install</commandlineArgs>
 						</configuration>
 					</execution>
@@ -257,7 +306,7 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<executable>node</executable>
-							<workingDirectory>${project.root.dir}/test/unit</workingDirectory>
+							<workingDirectory>test/unit</workingDirectory>
 							<commandlineArgs>./node_modules/jest/bin/jest --notify --config=config.json</commandlineArgs>
 						</configuration>
 					</execution>
@@ -269,7 +318,7 @@
 						<phase>install</phase>
 						<configuration>
 							<executable>npm</executable>
-							<workingDirectory>${project.root.dir}/test/integration</workingDirectory>
+							<workingDirectory>test/integration</workingDirectory>
 							<commandlineArgs>install</commandlineArgs>
 						</configuration>
 					</execution>
@@ -281,8 +330,8 @@
 						<phase>install</phase>
 						<configuration>
 							<executable>node</executable>
-							<workingDirectory>${project.root.dir}/test/integration</workingDirectory>
-							<commandlineArgs>./node_modules/cucumber/bin/cucumber-js --world-parameters '{ "scheme": "${test.scheme}", "domain": "${test.hostname}/book${deployment.suffix}/v1", "apikey": "${test.apikey}" }' --format ./node_modules/cucumber-pretty -f json:report.json</commandlineArgs>
+							<workingDirectory>test/integration</workingDirectory>
+							<commandlineArgs>./node_modules/cucumber/bin/cucumber-js --world-parameters '${worldParameters}' --format ./node_modules/cucumber-pretty -f json:report.json</commandlineArgs>
 						</configuration>
 					</execution>
 				</executions>
