@@ -12,6 +12,7 @@
   "devDependencies": {
     "apickli": "^2.0.0",
     "cucumber": "^4.0.0",
-    "cucumber-pretty": "^1.4.0"
+    "cucumber-pretty": "^1.4.0",
+    "lodash": "^4.17.10"
   }
 }

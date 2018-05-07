@@ -2,7 +2,7 @@ Feature: Book API (V1) Tests
 
     Scenario: Get Books - Success
 
-        When I GET /books?apikey=`apikey`
+        When I GET /books?apikey=`consumerKey`
         Then response code should be 200
         And response body should be valid json
         And response body path $.[0].id should be (.+)
@@ -18,7 +18,7 @@ Feature: Book API (V1) Tests
 
     Scenario: Search Books - Success
 
-        When I GET /books/search?apikey=`apikey`&q=War
+        When I GET /books/search?apikey=`consumerKey`&q=War
         Then response code should be 200
         And response body should be valid json
         And response body path $.[0].title should be ^(.*[wW][Aa][rR].*)$
@@ -34,7 +34,7 @@ Feature: Book API (V1) Tests
 
     Scenario: Search Books - Missing Search Term
 
-        When I GET /books/search?apikey=`apikey`
+        When I GET /books/search?apikey=`consumerKey`
         Then response code should be 400
         And response body should be valid json
         And response body path $.code should be 400.01.001
@@ -43,7 +43,7 @@ Feature: Book API (V1) Tests
 
     Scenario: Get Book By Id - Success
 
-        When I GET /books/121b4bb3-c971-4080-b230-571148b71969?apikey=`apikey`
+        When I GET /books/121b4bb3-c971-4080-b230-571148b71969?apikey=`consumerKey`
         Then response code should be 200
         And response body should be valid json
         And response body path $.id should be 121b4bb3-c971-4080-b230-571148b71969
@@ -59,7 +59,7 @@ Feature: Book API (V1) Tests
 
     Scenario: Resource Not Found
 
-        When I GET /other?apikey=`apikey`
+        When I GET /other?apikey=`consumerKey`
         Then response code should be 404
         And response body should be valid json
         And response body path $.code should be 404.01.001
