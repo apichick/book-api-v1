@@ -6,7 +6,7 @@ const {
     setDefaultTimeout
 } = require('cucumber');
 
-setDefaultTimeout(10 * 1000);
+setDefaultTimeout(20 * 1000);
 
 Before(function () {
     this.apickli = new apickli.Apickli(this.parameters.scheme, this.parameters.domain);
