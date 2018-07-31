@@ -5,7 +5,7 @@ pipeline {
         nodejs "nodejs-8.x"
     }
     stages {
-        stage('Deploy And Test'){
+        stage('Deploy And Test') {
             steps {
                 script {
                     // feature branches are deployed to environment used for development
@@ -21,6 +21,15 @@ pipeline {
                         sh "mvn install -s${APIGEE_SETTINGS} -P${profile} -Ddescription.suffix=\" branch: ${BRANCH_NAME} commit: ${GIT_COMMIT}\" -Dusername=${USERNAME} -Dpassword=${PASSWORD}"
                     }
  
+                }
+            }
+        }
+        stage('Update smartdocs') {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'devportal-credentials',
+                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
+                withCredentials([[$class: 'StringBinding', credentialsId: 'devportal-cronkey',
+                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
+                        sh "./update_smartdocs.sh ${USERNAME} ${PASSWORD} http://dev-ylesyuk.devportal.apigee.io/ ${CRON_KEY}"
                 }
             }
         }
