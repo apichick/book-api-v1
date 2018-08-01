@@ -28,10 +28,7 @@ pipeline {
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'devportal-credentials',
                                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
-                    withCredentials([[$class: 'StringBinding', credentialsId: 'devportal-cronkey',
-                                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
-                            sh "./update_smartdocs.sh ${USERNAME} ${PASSWORD} http://dev-ylesyuk.devportal.apigee.io/ ${CRON_KEY}"
-                    }
+                    sh "./update_smartdocs.sh ${USERNAME} ${PASSWORD} http://dev-ylesyuk.devportal.apigee.io/ ${CRON_KEY}"
                 }
             }
         }
