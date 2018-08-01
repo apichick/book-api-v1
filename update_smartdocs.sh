@@ -17,6 +17,10 @@ fi
 
 curl -v -X POST -u ${USERNAME}:${PASSWORD} -H "Content-Type: multipart/form-data;" -F "api_definition=@book-api-v1-spec.json" "http://dev-ylesyuk.devportal.apigee.io/smartdocs/apis/models/book-api-v1/import"
 
+echo "before render..."
+
 curl -X POST -u ${USERNAME}:${PASSWORD} "http://dev-ylesyuk.devportal.apigee.io/smartdocs/apis/models/book-api-v1/render"
+
+echo "after render..."
 
 curl -v "http://dev-ylesyuk.devportal.apigee.io/cron.php?cron_key=Yg9UaqudC8-DS0yuCUR0PTU70zKDE--mIC3E8Ft_lDQ"
