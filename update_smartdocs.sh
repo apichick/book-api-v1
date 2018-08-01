@@ -17,4 +17,4 @@ fi
 
 curl -X POST -u ${USERNAME}:${PASSWORD} -H "Content-Type: multipart/form-data;" -F "api_definition=@book-api-v1-spec.json" "${PORTAL_URL}/smartdocs/apis/models/book-api-v1/import"
 
-curl -v "${PORTAL_URL}/cron.php?cron_key=${CRON_KEY}"
+curl -v "${PORTAL_URL}/cron.php?cron_key=Yg9UaqudC8-DS0yuCUR0PTU70zKDE--"
