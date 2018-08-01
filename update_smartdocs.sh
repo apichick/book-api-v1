@@ -7,7 +7,9 @@ fi
 USERNAME=$1
 PASSWORD=$2
 
-RESULT=$(curl -s -o /dev/null -I -w "%{http_code}" -u ${USERNAME}:${PASSWORD} -H "Accept: application/json" http://dev-ylesyuk.devportal.apigee.io/smartdocs/apis/models/book-api-v1
+RESULT=$(curl -s -o /dev/null -I -w "%{http_code}" -u ${USERNAME}:${PASSWORD} -H "Accept: application/json" http://dev-ylesyuk.devportal.apigee.io/smartdocs/apis/models/book-api-v1)
+
+echo $RESULT
 
 if [ $RESULT -eq 404 ]; then
     curl -v -X POST -u ${USERNAME}:${PASSWORD} -H "Content-Type: multipart/form-data;" -F "description=Book API v1" -F "name=book-api-v1" -F "display_name=Book API v1" "http://dev-ylesyuk.devportal.apigee.io/smartdocs/apis/models"
