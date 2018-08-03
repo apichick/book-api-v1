@@ -16,19 +16,15 @@ pipeline {
                     }
                 }
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'apigee-credentials',
-                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
+                            usernameVariable: 'APIGEE_USERNAME', passwordVariable: 'APIGEE_PASSWORD']]) {   
+
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'devportal-credentials',
+                            usernameVariable: 'DEVPORTAL_USERNAME', passwordVariable: 'DEVPORTAL_PASSWORD']]) {                                    
+
                      configFileProvider([configFile(fileId: 'apigee-settings', variable: 'APIGEE_SETTINGS')]) {
-                        sh "mvn install -s${APIGEE_SETTINGS} -P${profile} -Ddescription.suffix=\" branch: ${BRANCH_NAME} commit: ${GIT_COMMIT}\" -Dusername=${USERNAME} -Dpassword=${PASSWORD}"
+                        sh "mvn install -s${APIGEE_SETTINGS} -P${profile} -Ddescription.suffix=\" branch: ${BRANCH_NAME} commit: ${GIT_COMMIT}\" -Dusername=${APIGEE_USERNAME} -Dpassword=${APIGEE_PASSWORD} -DdevportalUsername=${DEVPORTAL_USERNAME} -DdevportalPassword=${DEVPORTAL_PASSWORD}"
                     }
  
-                }
-            }
-        }
-        stage('Update smartdocs') {
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'devportal-credentials',
-                                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {     
-                    sh "./update_smartdocs.sh ${USERNAME} ${PASSWORD}"
                 }
             }
         }

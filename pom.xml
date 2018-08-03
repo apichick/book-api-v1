@@ -32,6 +32,8 @@
 		<apigee.apiversion>v1</apigee.apiversion>
 		<apigee.username>${username}</apigee.username>
 		<apigee.password>${password}</apigee.password>
+		<devportal.username>${devportalUsername}</devportal.username>
+		<devportal.password>${devportalPassword}</devportal.password>
 		<apigee.org>${org}</apigee.org>
 		<apigee.env>${env}</apigee.env>
 		<apigee.config.dir>${target.root.dir}/config</apigee.config.dir>
@@ -332,6 +334,18 @@
 							<executable>node</executable>
 							<workingDirectory>test/integration</workingDirectory>
 							<commandlineArgs>./node_modules/cucumber/bin/cucumber-js --world-parameters '${worldParameters}' --format ./node_modules/cucumber-pretty -f json:report.json</commandlineArgs>
+						</configuration>
+					</execution>
+					<execution>
+						<id>update-smartdocs</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>install</phase>
+						<configuration>
+							<executable>./update_smartdocs.sh</executable>
+							<workingDirectory>test/integration</workingDirectory>
+							<commandlineArgs>${devportal.username} ${devportal.password} ${devportal.url} ${devportal.cronkey}</commandlineArgs>
 						</configuration>
 					</execution>
 				</executions>
